@@ -32,8 +32,11 @@ Version: **1.0.0**
 #### Via go install (recommandé)
 
 ```bash
-# Installer directement depuis GitHub
+# Installer directement depuis GitHub (dernière version)
 go install github.com/TALLHAMADOU/goleaks/cmd/goleaks@latest
+
+# Ou installer une version spécifique (ex: v0.1.0)
+go install github.com/TALLHAMADOU/goleaks/cmd/goleaks@v0.1.0
 
 # Vérifier l'installation
 goleaks --version
@@ -507,7 +510,8 @@ Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
 
 - 🐛 **Issues** : [GitHub Issues](https://github.com/TALLHAMADOU/goleaks/issues)
 - 💬 **Discussions** : [GitHub Discussions](https://github.com/TALLHAMADOU/goleaks/discussions)
-- 📧 **Email** : team@goleaks.dev
+- 📧 **Email** : tallhamadou@gmail.com
+
 
 ---
 
