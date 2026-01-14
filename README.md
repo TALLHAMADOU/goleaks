@@ -1,12 +1,15 @@
-# 🔍 SecretHunter
+# 🔍 Goleaks
 
 ![Go Version](https://img.shields.io/badge/go-1.21+-00ADD8?style=flat-square&logo=go)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)
 ![Version](https://img.shields.io/badge/version-1.0.0-green.svg?style=flat-square)
+![CLI](https://img.shields.io/badge/CLI-Go-blue?style=flat-square&logo=go)
 
-> 🚀 **[SecretHunter Pro - Coming Soon](https://secrethunter.pro)** - Version Pro avec +700 patterns, dashboard SaaS, alertes Slack, et plus encore !
+> 🚀 **[Goleaks Pro - Coming Soon](https://goleaks.pro)** - Version Pro avec +700 patterns, dashboard SaaS, alertes Slack, et plus encore !
 
-**SecretHunter** est un outil CLI ultra-rapide et précis en Go pour détecter les secrets sensibles (clés API, mots de passe, tokens) dans vos fichiers de code ou répertoires.
+**Goleaks** est un **outil CLI en Go** (Golang) ultra-rapide et précis pour détecter les secrets sensibles (clés API, mots de passe, tokens) dans vos fichiers de code ou répertoires.
+
+**🔑 Mots-clés :** `cli` `go` `golang` `secrets` `security` `api-keys` `trufflehog-alternative` `gitleaks-alternative` `secret-detection` `security-scanning` `devsecops` `git-secrets` `env-files` `ci-cd` `security-tool`
 
 Version: **1.0.0**
 
@@ -28,14 +31,14 @@ Version: **1.0.0**
 
 ```bash
 # Cloner le repository
-git clone https://github.com/votre-org/secrethunter.git
-cd secrethunter
+git clone https://github.com/votre-org/goleaks.git
+cd goleaks
 
 # Télécharger les dépendances
 go mod download
 
 # Compiler
-go build -o secrethunter
+go build -o goleaks
 
 # Ou installer directement
 go install
@@ -52,17 +55,17 @@ go install
 
 ```bash
 # Afficher l'aide
-secrethunter --help
-secrethunter scan --help
+goleaks --help
+goleaks scan --help
 
 # Scanner le répertoire courant
-secrethunter scan
+goleaks scan
 
 # Scanner un répertoire spécifique
-secrethunter scan /path/to/project
+goleaks scan /path/to/project
 
 # Scanner un fichier
-secrethunter scan config.env
+goleaks scan config.env
 ```
 
 ### Options disponibles
@@ -70,7 +73,7 @@ secrethunter scan config.env
 | Option | Alias | Description |
 |--------|-------|-------------|
 | `--smart` | `-s` | Mode intelligent pour réduire les faux positifs (ignore tests/docs/exemples, vérifie entropie) |
-| `--verify-light` | `-v` | Vérifie seulement 10-15 secrets dangereux avec requêtes HEAD légères (timeout 2s, user-agent SecretHunter/1.0) |
+| `--verify-light` | `-v` | Vérifie seulement 10-15 secrets dangereux avec requêtes HEAD légères (timeout 2s, user-agent Goleaks/1.0) |
 | `--diff-only` | `-d` | Scanner seulement les changements Git (unstaged + staged) pour vitesse x2 sur gros repos |
 | `--output` | `-o` | Format de sortie : `terminal` (par défaut), `json`, `sarif`, `report-txt` (texte formaté pour audits) |
 | `--ignore-dirs` | `-i` | Dossiers à ignorer (séparés par des virgules) |
@@ -82,10 +85,10 @@ secrethunter scan config.env
 
 ```bash
 # Scan complet du répertoire courant
-secrethunter scan
+goleaks scan
 
 # Résultat :
-# 🔍 SecretHunter v1.0.0 - Scan de secrets
+# 🔍 Goleaks v1.0.0 - Scan de secrets
 # Chemin: /path/to/project
 # Démarrage du scan...
 #
@@ -103,7 +106,7 @@ secrethunter scan
 
 ```bash
 # Réduit les faux positifs en ignorant tests/docs/exemples et en vérifiant l'entropie
-secrethunter scan --smart
+goleaks scan --smart
 
 # Ignore automatiquement :
 # - Dossiers : test/, spec/, example/, sample/, demo/, mock/
@@ -115,7 +118,7 @@ secrethunter scan --smart
 
 ```bash
 # Scanner seulement les changements Git (unstaged + staged)
-secrethunter scan --diff-only
+goleaks scan --diff-only
 
 # Utile pour :
 # - Pré-commit hooks
@@ -127,7 +130,7 @@ secrethunter scan --diff-only
 
 ```bash
 # Vérifie les secrets high-risk avec requêtes HTTP HEAD légères
-secrethunter scan --verify-light
+goleaks scan --verify-light
 
 # Vérifie uniquement les secrets marqués IsHighRisk (max 15) :
 # - OpenAI, Grok xAI, Anthropic
@@ -143,7 +146,7 @@ secrethunter scan --verify-light
 
 ```bash
 # Export JSON pour CI/CD ou traitement automatique
-secrethunter scan --output json > results.json
+goleaks scan --output json > results.json
 
 # Structure JSON :
 # {
@@ -170,7 +173,7 @@ secrethunter scan --output json > results.json
 
 ```bash
 # Export SARIF pour GitHub Security / CodeQL
-secrethunter scan --output sarif > results.sarif
+goleaks scan --output sarif > results.sarif
 
 # Compatible avec :
 # - GitHub Security tab
@@ -182,7 +185,7 @@ secrethunter scan --output sarif > results.sarif
 
 ```bash
 # Export texte formaté pour audits (pas un vrai PDF)
-secrethunter scan --output report-txt > audit-report.txt
+goleaks scan --output report-txt > audit-report.txt
 
 # Note: Génération PDF réelle avec gofpdf prévue pour la version Pro
 ```
@@ -191,21 +194,21 @@ secrethunter scan --output report-txt > audit-report.txt
 
 ```bash
 # Scan intelligent avec vérification légère
-secrethunter scan --smart --verify-light
+goleaks scan --smart --verify-light
 
 # Scan seulement les changements Git avec export JSON
-secrethunter scan --diff-only --output json > changes.json
+goleaks scan --diff-only --output json > changes.json
 
 # Scan avec dossiers personnalisés à ignorer
-secrethunter scan --ignore-dirs ".git,node_modules,vendor,tmp,dist"
+goleaks scan --ignore-dirs ".git,node_modules,vendor,tmp,dist"
 
 # Scan avec support IaC
-secrethunter scan --iac-support
+goleaks scan --iac-support
 ```
 
 ## 📋 Patterns détectés
 
-SecretHunter détecte actuellement **20 patterns** de secrets prioritaires :
+Goleaks détecte actuellement **20 patterns** de secrets prioritaires :
 
 | # | Service | Pattern | Risque | High-Risk* |
 |---|---------|---------|--------|------------|
@@ -258,11 +261,11 @@ jobs:
         with:
           go-version: '1.21'
       
-      - name: Install SecretHunter
-        run: go install github.com/votre-org/secrethunter@latest
+      - name: Install Goleaks
+        run: go install github.com/votre-org/goleaks@latest
       
-      - name: Run SecretHunter
-        run: secrethunter scan --smart --output sarif > results.sarif
+      - name: Run Goleaks
+        run: goleaks scan --smart --output sarif > results.sarif
         continue-on-error: true
       
       - name: Upload SARIF
@@ -278,9 +281,9 @@ jobs:
 # .git/hooks/pre-commit
 
 # Scanner seulement les changements
-if secrethunter scan --diff-only --output json | jq -e '.summary.total_secrets > 0' > /dev/null 2>&1; then
+if goleaks scan --diff-only --output json | jq -e '.summary.total_secrets > 0' > /dev/null 2>&1; then
     echo "❌ Secrets détectés dans les changements !"
-    secrethunter scan --diff-only
+    goleaks scan --diff-only
     exit 1
 fi
 ```
@@ -292,7 +295,7 @@ fi
 # scan-daily.sh
 
 # Scan complet avec export JSON
-secrethunter scan --smart --output json > daily-scan-$(date +%Y%m%d).json
+goleaks scan --smart --output json > daily-scan-$(date +%Y%m%d).json
 
 # Analyser les résultats
 SECRETS=$(jq '.summary.total_secrets' daily-scan-$(date +%Y%m%d).json)
@@ -347,7 +350,7 @@ Le mode intelligent applique plusieurs filtres pour réduire les faux positifs :
 La vérification légère effectue des requêtes HTTP HEAD pour valider les secrets high-risk :
 
 - **Timeout** : 2 secondes par requête
-- **User-Agent** : `SecretHunter/1.0 (https://github.com/secrethunter)`
+- **User-Agent** : `Goleaks/1.0 (https://github.com/goleaks)`
 - **Limite** : Maximum 15 secrets high-risk
 - **Services vérifiés** : OpenAI, GitHub PAT, Stripe, Cloudflare, Azure AD, etc.
 
@@ -358,7 +361,7 @@ La vérification légère effectue des requêtes HTTP HEAD pour valider les secr
 ### Structure du projet
 
 ```
-secrethunter/
+goleaks/
 ├── main.go              # Point d'entrée CLI (urfave/cli/v2)
 ├── patterns/
 │   └── patterns.go      # 20 patterns regex optimisés avec IsHighRisk
@@ -380,10 +383,10 @@ secrethunter/
 go mod download
 
 # Compiler
-go build -o secrethunter
+go build -o goleaks
 
 # Ou avec optimisations
-go build -ldflags="-s -w" -o secrethunter
+go build -ldflags="-s -w" -o goleaks
 ```
 
 ### Dépendances
@@ -408,7 +411,7 @@ go test ./scan
 
 ## 📝 Remédiation
 
-Si SecretHunter détecte des secrets :
+Si Goleaks détecte des secrets :
 
 1. **Rotatez immédiatement** toutes les clés actives détectées
    - AWS : [console.aws.amazon.com/iam](https://console.aws.amazon.com/iam)
@@ -475,12 +478,12 @@ Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
 
 ## 📞 Support
 
-- 🐛 **Issues** : [GitHub Issues](https://github.com/votre-org/secrethunter/issues)
-- 💬 **Discussions** : [GitHub Discussions](https://github.com/votre-org/secrethunter/discussions)
-- 📧 **Email** : team@secrethunter.dev
+- 🐛 **Issues** : [GitHub Issues](https://github.com/votre-org/goleaks/issues)
+- 💬 **Discussions** : [GitHub Discussions](https://github.com/votre-org/goleaks/discussions)
+- 📧 **Email** : team@goleaks.dev
 
 ---
 
-**SecretHunter** - Détectez les secrets avant qu'ils ne soient compromis 🔒
+**Goleaks** - Détectez les secrets avant qu'ils ne soient compromis 🔒
 
 *Version 1.0.0 - Dernière mise à jour : 2026*
