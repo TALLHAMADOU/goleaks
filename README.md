@@ -27,21 +27,33 @@ Version: **1.0.0**
 
 ## 📦 Installation
 
-### Depuis les sources
+### Installation
+
+#### Via go install (recommandé)
+
+```bash
+# Installer directement depuis GitHub
+go install github.com/TALLHAMADOU/goleaks/cmd/goleaks@latest
+
+# Vérifier l'installation
+goleaks --version
+```
+
+#### Depuis les sources
 
 ```bash
 # Cloner le repository
-git clone https://github.com/votre-org/goleaks.git
+git clone https://github.com/TALLHAMADOU/goleaks.git
 cd goleaks
 
 # Télécharger les dépendances
 go mod download
 
 # Compiler
-go build -o goleaks
+go build -o goleaks ./cmd/goleaks
 
 # Ou installer directement
-go install
+go install ./cmd/goleaks
 ```
 
 ### Prérequis
@@ -262,7 +274,7 @@ jobs:
           go-version: '1.21'
       
       - name: Install Goleaks
-        run: go install github.com/votre-org/goleaks@latest
+        run: go install github.com/TALLHAMADOU/goleaks@latest
       
       - name: Run Goleaks
         run: goleaks scan --smart --output sarif > results.sarif
@@ -362,18 +374,33 @@ La vérification légère effectue des requêtes HTTP HEAD pour valider les secr
 
 ```
 goleaks/
-├── main.go              # Point d'entrée CLI (urfave/cli/v2)
+├── cmd/
+│   └── goleaks/
+│       └── main.go          # Point d'entrée CLI (urfave/cli/v2)
 ├── patterns/
-│   └── patterns.go      # 20 patterns regex optimisés avec IsHighRisk
+│   └── patterns.go          # Package patterns : 20 patterns regex optimisés avec IsHighRisk
 ├── scan/
-│   ├── scan.go          # Logique de scan récursif (filepath.WalkDir)
-│   ├── git.go           # Support Git diff (--diff-only)
-│   └── verify.go        # Vérification légère HTTP HEAD (--verify-light)
+│   ├── scan.go              # Package scan : Logique de scan récursif (filepath.WalkDir)
+│   ├── git.go               # Support Git diff (--diff-only)
+│   └── verify.go            # Vérification légère HTTP HEAD (--verify-light)
 ├── output/
-│   └── output.go        # Affichage terminal, JSON, SARIF, PDF
-├── go.mod
+│   └── output.go            # Package output : Affichage terminal, JSON, SARIF, PDF
+├── go.mod                   # Module: github.com/TALLHAMADOU/goleaks
 ├── go.sum
 └── README.md
+```
+
+### Installation en tant que package Go
+
+```bash
+# Installation globale (recommandé)
+go install github.com/TALLHAMADOU/goleaks/cmd/goleaks@latest
+
+# Vérifier que $GOPATH/bin est dans votre PATH
+echo $PATH | grep -q "$HOME/go/bin" || export PATH=$PATH:$HOME/go/bin
+
+# Utiliser goleaks
+goleaks scan
 ```
 
 ### Compiler depuis les sources
@@ -382,11 +409,11 @@ goleaks/
 # Télécharger les dépendances
 go mod download
 
-# Compiler
-go build -o goleaks
+# Compiler le binaire CLI
+go build -o goleaks ./cmd/goleaks
 
 # Ou avec optimisations
-go build -ldflags="-s -w" -o goleaks
+go build -ldflags="-s -w" -o goleaks ./cmd/goleaks
 ```
 
 ### Dépendances
@@ -478,8 +505,8 @@ Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
 
 ## 📞 Support
 
-- 🐛 **Issues** : [GitHub Issues](https://github.com/votre-org/goleaks/issues)
-- 💬 **Discussions** : [GitHub Discussions](https://github.com/votre-org/goleaks/discussions)
+- 🐛 **Issues** : [GitHub Issues](https://github.com/TALLHAMADOU/goleaks/issues)
+- 💬 **Discussions** : [GitHub Discussions](https://github.com/TALLHAMADOU/goleaks/discussions)
 - 📧 **Email** : team@goleaks.dev
 
 ---

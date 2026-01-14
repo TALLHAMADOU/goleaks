@@ -7,7 +7,7 @@ import (
 	"sort"
 	"strings"
 
-	"secrethunter/scan"
+	"github.com/TALLHAMADOU/goleaks/scan"
 
 	"github.com/fatih/color"
 )

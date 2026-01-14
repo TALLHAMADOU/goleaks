@@ -1,4 +1,4 @@
-module secrethunter
+module github.com/TALLHAMADOU/goleaks
 
 go 1.21
 

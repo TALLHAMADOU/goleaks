@@ -9,7 +9,7 @@ import (
 	"regexp"
 	"strings"
 
-	"secrethunter/patterns"
+	"github.com/TALLHAMADOU/goleaks/patterns"
 )
 
 // Secret représente un secret détecté
